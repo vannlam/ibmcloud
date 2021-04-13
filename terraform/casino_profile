@@ -1,0 +1,6 @@
+# IBM Cloud credentials
+export IC_ENV=casino
+export IC_API_KEY="BRBhPYj6zXlEnuly0ALJmzy38HNf4uhAv1mHIZ55bexp"
+export IAAS_CLASSIC_USERNAME="vann.lam@fr.ibm.com"
+export IAAS_CLASSIC_API_KEY="c0925b494b21cc4d90500e200318054d4cb114a355ed19e1fdf5e224486ab432"
+

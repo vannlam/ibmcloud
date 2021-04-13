@@ -30,8 +30,10 @@ yum -y groupinstall "Server with GUI"
 # install VNC
 yum -y install tigervnc-server xorg-x11-fonts-Type1
 vncpasswd
-
-sed -i "s:# geometry:geometry:" .vnc/config
 vncserver
+sed -i "s:# geometry:geometry:" .vnc/config
+vncserver -kill :1
+vncserver
+
 # open tunnel for VNC
 ssh -p 32022 -fL 9901:localhost:5901 root@158.176.179.103 tail -f /dev/null

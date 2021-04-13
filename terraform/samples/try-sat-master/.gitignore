@@ -1,0 +1,6 @@
+*.md.html
+.envrc
+.ibmcloud-home
+ssh-keys/
+terraform_show.json
+wireguard*.conf
