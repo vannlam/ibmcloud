@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# **** DON'T CHANGE THESE LINES. ***
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# **********************************
+
+# All the resources created by try-sat will use this prefix on their name.
+# Recommend you set to 'satellite-test' or similar (perhaps including your
+# initials if you're on a shared account), e.g. you might use
+# 'abc-my-satellite-test'.
+#
+# Please keep this less than 20 chars long (it will be prepended onto some
+# IBM Cloud resources which have length restrictions), and just regular
+# characters - no spaces. Recommend you do *not* end with a hyphen.
+export RESOURCE_PREFIX="XXX"
+
+# Provide an API key. Docs for creating one at
+# https://cloud.ibm.com/docs/account?topic=account-userapikey#create_user_key.
+export IC_API_KEY="XXX"
+
+# OPTIONAL: You can leave these values at the default or change them if you prefer.
+export LOCATION_REGION="eu-gb" # Region where the Satellite location is managed from in IBM Cloud - currently this needs to be `eu-gb` or `us-east`.
+export IAAS_REGION="eu-gb"     # Region where your IaaS artifacts are created in IBM Cloud to run the location; `ibmcloud is regions` will tell you the valid regions.
+
+# OPTIONAL: If you want to, you can uncomment the line below and tweak the VSI
+# profile used for the worker nodes, which controls the Memory and CPU provided.
+# 'bx2-4x16' is the minimum required for Satellite. `ibmcloud is instance-profiles`
+# will list the valid values.
+# export TF_VAR_WORKER_NODE_PROFILE="bx2-4x16"
+
+# OPTIONAL: By default, `try-sat` will use the same configuration for `ibmcloud`
+# as everything else on your system. This is simplest, but prevents you from
+# using `ibmcloud` against other IBM Cloud accounts whilst `try-sat` is working.
+# If you want to change that behaviour, uncomment this line which will create a
+# separate 'home' for the `ibmcloud` CLI. If you do that, it becomes especially
+# important to run `make install` as per the README to ensure you have all the
+# right CLI plugins installed.
+# export IBMCLOUD_HOME=${SCRIPT_DIR}/.ibmcloud-home
+
+# **** DON'T CHANGE THESE LINES. ***
+export TF_VAR_RESOURCE_PREFIX=${RESOURCE_PREFIX}
+export TF_VAR_LOCATION_REGION=${LOCATION_REGION}
+export TF_VAR_IAAS_REGION=${IAAS_REGION}

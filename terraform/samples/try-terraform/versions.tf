@@ -1,9 +1,17 @@
 terraform {
-  required_version = ">= 0.14"
   required_providers {
     ibm = {
       source  = "IBM-Cloud/ibm"
-      version = ">= 1.17, !=1.23.1"
+      version = "~> 1.20.0"
     }
   }
 }
+
+# Configure the IBM Provider
+provider "ibm" {
+  region           = "eu-de"
+  ibmcloud_api_key = var.IBMCLOUD_API_KEY
+  generation       = 2
+
+}
+

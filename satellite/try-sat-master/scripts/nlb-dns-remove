@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+NLB_IP=$1
+NLB_HOST=$2
+RESOURCE_PREFIX=$3
+
+# Only remove NLB IP if there is one (seems to be unpredictable at this stage).
+if [[ ${NLB_IP} != "-" ]]; then
+    for IP in $(echo ${NLB_IP//,/ }); do
+        until ibmcloud ks nlb-dns rm classic --cluster "${RESOURCE_PREFIX}-cluster" --nlb-host "${NLB_HOST}" --ip "${IP}"; do 
+            echo 'Waiting to remove NLB IPs...'; sleep 30;
+        done
+    done
+fi
