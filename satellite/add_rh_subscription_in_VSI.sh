@@ -5,3 +5,4 @@
 
 subscription-manager refresh
 subscription-manager repos --enable=*
+
