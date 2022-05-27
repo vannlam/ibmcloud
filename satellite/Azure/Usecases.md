@@ -11,6 +11,7 @@ But their concern is to have a managed Openshift cluster supported by IBM Softwa
 For instance, as of today (May 2022) IBM Maximo is validated and supported on IBM Cloud Satellite Openshift managed cluster, but not yet neither on AWS Rosa nor on Azure ARO.
 
 Client needs to deploy IBM Software such as IBM Maximo rapidly and has no skills in Openshift.
+
 Notes : Most of the IBM Software in IBM Catalog tend to be modernized, hence they are all Openshift based.
 
 #### Proposed solution :
@@ -32,5 +33,5 @@ Client seems to be charged Openshift Subscription twice.
 
 #### Using Openshift subscription on IBM Satellite :
 With IBM Satellite, Openshift subscription may be removed as long as the IBM Software installed on it has already an Openshift subscription.
-Hence, usually using the same sizings of clusters, Managed Openshift IBM Cloud Satellite solution is cheaper than ARO abnd ROSA.
+Hence, usually using the same sizings of clusters, Managed Openshift IBM Cloud Satellite solution is cheaper than ARO and ROSA.
 
