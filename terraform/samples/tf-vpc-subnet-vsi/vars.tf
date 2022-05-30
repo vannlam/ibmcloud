@@ -1,9 +1,9 @@
 # All these variables are supplied from the .envrc file in TF_VAR_xxx environment
 # variables.
 
-variable "IBMCLOUD_API_KEY" {
-  type        = string
-  default     = "6duWoBqFi4TwNJHGa558d-aF1ZxAWa-8tnihLdujWPJb"
+variable "IC_API_KEY" {
+  default     = "nope"
+  description = "IBM Cloud API KEY"
 }
 
 variable "SSH_PUBLIC_KEY" {
