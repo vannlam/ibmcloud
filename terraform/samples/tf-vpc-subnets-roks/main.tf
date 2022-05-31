@@ -4,46 +4,49 @@ data "ibm_is_ssh_key" "ssh_key" {
 }
 
 resource "ibm_is_vpc" "vpc1" {
-  name = "vpcroks"
+  name = var.vpcname
 }
 
 resource "ibm_is_subnet" "subnet1" {
-  name                     = "mysubnet1"
+  name                     = "mysubnet1-${var.region}"
   vpc                      = ibm_is_vpc.vpc1.id
-  zone                     = "eu-de-1"
+  zone                     = "${var.region}-1"
   total_ipv4_address_count = 256
+  public_gateway           = ibm_is_public_gateway.pgw-z1.id
 }
 
 resource "ibm_is_subnet" "subnet2" {
-  name                     = "mysubnet2"
+  name                     = "mysubnet2-${var.region}"
   vpc                      = ibm_is_vpc.vpc1.id
-  zone                     = "eu-de-2"
+  zone                     = "${var.region}-2"
   total_ipv4_address_count = 256
+  public_gateway           = ibm_is_public_gateway.pgw-z2.id
 }
 
 resource "ibm_is_subnet" "subnet3" {
-  name                     = "mysubnet3"
+  name                     = "mysubnet3-${var.region}"
   vpc                      = ibm_is_vpc.vpc1.id
-  zone                     = "eu-de-3"
+  zone                     = "${var.region}-3"
+  public_gateway           = ibm_is_public_gateway.pgw-z3.id
   total_ipv4_address_count = 256
 }
 
 resource "ibm_is_public_gateway" "pgw-z1" {
-  name = "pgw-z1"
+  name = "pgw-${var.region}-z1"
   vpc  = ibm_is_vpc.vpc1.id
-  zone = "eu-de-1"
+  zone = "${var.region}-1"
 }
 
 resource "ibm_is_public_gateway" "pgw-z2" {
-  name = "pgw-z2"
+  name = "pgw-${var.region}-z2"
   vpc  = ibm_is_vpc.vpc1.id
-  zone = "eu-de-2"
+  zone = "${var.region}-2"
 }
 
 resource "ibm_is_public_gateway" "pgw-z3" {
-  name = "pgw-z3"
+  name = "pgw-${var.region}-z3"
   vpc  = ibm_is_vpc.vpc1.id
-  zone = "eu-de-3"
+  zone = "${var.region}-3"
 }
 
 data "ibm_resource_group" "resource_group" {
@@ -56,21 +59,21 @@ data "ibm_resource_instance" "cos_instance" {
 }
 
 data "ibm_is_zones" "reg" {
-  region = "eu-de"
+  region = "${var.region}"
 }
 
 locals {
   zn = [
     {
-      name = "eu-de-1"
+      name = "${var.region}-1"
       subid = ibm_is_subnet.subnet1.id
     },
     {
-      name = "eu-de-2"
+      name = "${var.region}-2"
       subid = ibm_is_subnet.subnet2.id
     },
     {
-      name = "eu-de-3"
+      name = "${var.region}-3"
       subid = ibm_is_subnet.subnet3.id
     }
   ]
@@ -79,10 +82,10 @@ locals {
 resource "ibm_container_vpc_cluster" "cluster" {
   name              = "my_vpc_cluster"
   vpc_id            = ibm_is_vpc.vpc1.id
-  kube_version      = "4.9.28_openshift"
+  kube_version      = var.kversion
   cos_instance_crn  = data.ibm_resource_instance.cos_instance.id
-  flavor            = "bx2.4x16"
-  worker_count      = 2      # per zone
+  flavor            = var.workerflavor
+  worker_count      = var.numworkers      # per zone
   resource_group_id = data.ibm_resource_group.resource_group.id
 
   dynamic zones {
