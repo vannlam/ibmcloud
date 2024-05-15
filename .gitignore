@@ -2,3 +2,4 @@
 fortigate/test/
 mytodo/
 satellite/try-sat/
+terraform/samples/tf-vpc-subnet-vsi/.terraform/providers/registry.terraform.io/ibm-cloud/ibm/1.64.2/darwin_arm64/terraform-provider-ibm_v1.64.2

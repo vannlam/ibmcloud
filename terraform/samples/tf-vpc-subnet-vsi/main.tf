@@ -23,7 +23,7 @@ resource "ibm_is_subnet" "testacc_subnet" {
 
 resource "ibm_is_instance" "testacc_instance" {
   name    = "my-centos-instance"
-  image   = "r010-067bd38b-7ddd-49d9-a7f3-6e0a798e0554"
+  image   = "r010-5d77fa4a-f9ed-4d2f-87ef-e7c5ea57509e"
   profile = "cx2-2x4"
 
   primary_network_interface {

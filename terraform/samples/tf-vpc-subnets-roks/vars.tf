@@ -22,7 +22,7 @@ variable "workerflavor" {
 }
 
 variable "kversion" {
-  default     = "1.22.9"            # depends on region for roks 4.10.9_openshift, 4.8.36_openshift, ..., for k8s 1.23.6, 1.22.9, 1.21.12
+  default     = "4.14.20"            # depends on region for roks 4.10.9_openshift, 4.8.36_openshift, ..., for k8s 1.23.6, 1.22.9, 1.21.12
   description = "k8s or Openshift version"
 }
 
