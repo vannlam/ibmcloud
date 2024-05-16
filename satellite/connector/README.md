@@ -1,5 +1,9 @@
 # Secure your connection with IBM Cloud Satellite Connector
 
+Author : Vann LAM
+Created on : May 16th 2024
+Updated on : May 16th 2024
+
 ## What is IBM Cloud Satellite Connector ?
 
 A Satellite Connector is a deployment model that enables the secure communications from IBM Cloud to on-prem resources with a light-weight container that is deployed on your container platform hosts, such as Docker hosts.
