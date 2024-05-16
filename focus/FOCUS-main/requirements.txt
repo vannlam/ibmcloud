@@ -1,0 +1,3 @@
+panda
+requests
+ibm_platform_services
