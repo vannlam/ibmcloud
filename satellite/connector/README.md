@@ -35,15 +35,15 @@ Create the connector
 
 - Click 'Create connector'
 
-![Connector menu](src/create connector1.png)
+![Connector menu](src/createconnector1.png)
 
 - Input the connector parameters
 
-![Connector menu](src/create connector2.png)
+![Connector menu](src/createconnector2.png)
 
 
 - Check that your connector is up and running
-![Connector menu](src/create connector3.png)
+![Connector menu](src/createconnector3.png)
 
 
 ## Create the Satellite Connector Agent 
