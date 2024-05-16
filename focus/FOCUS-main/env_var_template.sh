@@ -1,5 +1,5 @@
-export API_KEY=UgWf4mfoBkQKHqb7B8VNFf6HUKeRoipAOr2xZ07oW1oQ
-export ACCOUNT_ID=76445171de0246759484e1174bf8f1f0
+export API_KEY=$API_KEY
+export ACCOUNT_ID=$ACCOUNT_ID
 export BILLING_MONTH=2024-03 #format: 2024-01
 
 #Below this line should not be modified
