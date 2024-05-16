@@ -16,8 +16,8 @@ The key thing is that any IBM Cloud account with VRF and Service Endpoint enable
 The Satellite Connector Agent is a simple docker image, which may be deployed by the client anywhere, on a docker based platform (docker, k8s, openshift, ...), is a kind of reverse ssh tunnel.
 
 The Satellite Connector Agent prerequisites are :
-- internet access
-- access to the target backend application
+- have internet access
+- have access to the target backend application
 
 When the Satellite Connector agent is configured and deployed correctly, it creates a secure tunnel (called a connector) to the Satellite Relay on IBM Cloud.
 
