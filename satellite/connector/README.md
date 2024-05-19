@@ -1,8 +1,10 @@
 # Secure your connection with IBM Cloud Satellite Connector
 
-Author : Vann LAM
-Created on : May 16th 2024
+Author : Vann LAM,
+Created on : May 16th 2024,
 Updated on : May 16th 2024
+
+Usecase 1 : Use IBM Cloud Satellite Connector to secure your API call from your APIC Reserved Instance on IBM Cloud
 
 ## What is IBM Cloud Satellite Connector ?
 
@@ -109,7 +111,8 @@ So far, we are done !!! Congratulations
 
 
 ## Usecases
-### Usecase 1
+### Usecase 1 : Use IBM Cloud Satellite Connector to secure your API call from your APIC Reserved Instance on IBM Cloud
+
 
 - Connecting APIC Reserved Instance to an IBM Cloud account
 ![Connector menu](src/apic1.png)
