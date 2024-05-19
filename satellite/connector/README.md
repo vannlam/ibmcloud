@@ -118,9 +118,9 @@ Here are the steps to setup this architecture :
 
 #### On Client's IBM account site : 
 
-- Create a Satellite Connector
-- Create a Satellite Connector Agent
-- Create a Satellite Connector User Endpoint
+- Create a Satellite Connector (it creates resources at the Satellite Relay level)
+- Create a Satellite Connector Agent (it creates the secure tunnel between the Satellite Connector agent and the Satellite Connector resources)
+- Create a Satellite Connector User Endpoint (it points to the local backend application, from the Satellite Relay)
 
 
 
