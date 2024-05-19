@@ -111,7 +111,7 @@ So far, we are done !!! Congratulations
 
 
 ## Usecases
-### Usecase 1 : Use IBM Cloud Satellite Connector to secure your API call from your APIC Reserved Instance on IBM Cloud
+### Usecase 1 : Use IBM Cloud Satellite Connector to secure your API call from your **APIC Reserved Instance on IBM Cloud**
 
 
 - Connecting APIC Reserved Instance to an IBM Cloud account
