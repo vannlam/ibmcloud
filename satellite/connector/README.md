@@ -124,7 +124,7 @@ Here are the steps to setup this architecture :
 - Create a Satellite Connector (it creates resources at the Satellite Relay level)
 - Create a Satellite Connector Agent (it creates the secure tunnel between the Satellite Connector agent and the Satellite Connector resources)
 - Create a Satellite Connector User Endpoint (it points to the local backend application, from the Satellite Relay)
-
+- Use Satellite Connector User Endpoint ACL to whitelist the right IPs coming from your APIC Reserved Instance
 
 
 #### On APIC Reserved Instance account :
