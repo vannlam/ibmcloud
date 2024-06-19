@@ -2,7 +2,7 @@
 
 Author : Vann LAM,
 Created on : May 16th 2024,
-Updated on : June 11th 2024
+Updated on : June 19th 2024
 
 Usecase 1 : Use IBM Cloud Satellite Connector to secure your API call from your **APIC Reserved Instance on IBM Cloud**
 
