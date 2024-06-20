@@ -121,7 +121,7 @@ If you need to open specific flows at your firewall level in order to allow VPN 
 
 
 - Connecting APIC Reserved Instance to an IBM Cloud account
-![Connector menu](src/apic1.png)
+![Connector menu](src/apic1.png) 
 
 Here are the steps to setup this architecture :
 
