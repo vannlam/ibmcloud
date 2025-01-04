@@ -7,7 +7,7 @@ RUN \
     apt clean && \
     rm -rf /var/lib/apt/lists/\*
 
-COPY start_all.sh.js /start_all.sh
+COPY start_all.sh /start_all.sh
 
 WORKDIR /
 
