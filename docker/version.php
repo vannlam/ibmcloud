@@ -3,6 +3,9 @@ require '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
+$output = shell_exec('cat /aws/s3-access');
+echo "<pre>$output</pre>";
+
 $env = parse_ini_file('/aws/s3-access');
 $region = $env["CE_S3_REGION"];
 $version = $env["CE_S3_VERSION"];
@@ -10,11 +13,11 @@ $key = $env["CE_S3_KEY"];
 $secret = $env["CE_S3_SECRET"];
 $bucket = $env["CE_S3_BUCKET"];
 
-echo "CE_S3_REGION".$region;
-echo "CE_S3_VERSION".$version;
-echo "CE_S3_KEY".$key;
-echo "CE_S3_SECRET".$secret;
-echo "CE_S3_BUCKET".$bucket;
+echo "CE_S3_REGION".$region"."\n";
+echo "CE_S3_VERSION".$version"."\n";
+echo "CE_S3_KEY".$key"."\n";
+echo "CE_S3_SECRET".$secret"."\n";
+echo "CE_S3_BUCKET".$bucket"."\n";
 
 $config = [
                  'region' => $region,
