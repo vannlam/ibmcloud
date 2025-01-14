@@ -35,5 +35,5 @@ $file = $s3client->getObject([
                        ]);
 $body = $file->get('Body');
 $body->rewind();
-echo $body->read(100)
+echo $body->read(100);
 ?>
