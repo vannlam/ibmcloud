@@ -17,6 +17,12 @@ $secret=$output[0];
 exec('cat /aws/s3-access/CE_S3_BUCKET', $output, $retval);
 $bucket=$output[0];
 
+print_r($region);
+print_r($version);
+print_r($key);
+print_r($secret);
+print_r($bucket);
+
 $config = [
                  'region' => $region,
                  'version' => $version,

@@ -3,6 +3,7 @@
 # ibmcloud ce project select -n safeitem
 
 ibmcloud ce app delete --name si3 --force
+sleep 5
 ibmcloud ce app create \
   --name si3 \
   --build-source git@github.com:vannlam/ibmcloud.git \
