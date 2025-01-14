@@ -14,6 +14,7 @@ RUN \
 
 COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
+COPY v.php /var/www/html
 
 WORKDIR /
 
