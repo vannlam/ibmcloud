@@ -5,12 +5,8 @@ use Aws\Exception\AwsException;
 
 echo 'HERE 1\n";
 
-$output = shell_exec('ls -l /aws');
-echo 'HERE 2\n";
-echo "<pre>$output</pre>";
-
-echo 'HERE 3\n";
 $env = parse_ini_file('/aws/s3-access');
+echo 'HERE 2\n";
 $region = $env["CE_S3_REGION"];
 $version = $env["CE_S3_VERSION"];
 $key = $env["CE_S3_KEY"];
