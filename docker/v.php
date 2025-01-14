@@ -4,37 +4,36 @@ require '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-$output=null;
+$region=null;
+$version=null;
+$key=null;
+$secret=null;
+$bucket=null;
 $retval=null;
-exec('cat /aws/s3-access/CE_S3_REGION', $output, $retval);
-$region=$output[0];
-exec('cat /aws/s3-access/CE_S3_VERSION', $output, $retval);
-$version=$output[0];
-exec('cat /aws/s3-access/CE_S3_KEY', $output, $retval);
-$key=$output[0];
-exec('cat /aws/s3-access/CE_S3_SECRET', $output, $retval);
-$secret=$output[0];
-exec('cat /aws/s3-access/CE_S3_BUCKET', $output, $retval);
-$bucket=$output[0];
+exec('cat /aws/s3-access/CE_S3_REGION', $region, $retval);
+exec('cat /aws/s3-access/CE_S3_VERSION', $version, $retval);
+exec('cat /aws/s3-access/CE_S3_KEY', $key, $retval);
+exec('cat /aws/s3-access/CE_S3_SECRET', $secret, $retval);
+exec('cat /aws/s3-access/CE_S3_BUCKET', $bucket, $retval);
 
-print_r($region);
-print_r($version);
-print_r($key);
-print_r($secret);
-print_r($bucket);
+print_r($region[0]);
+print_r($version[0]);
+print_r($key[0]);
+print_r($secret[0]);
+print_r($bucket[0]);
 
 $config = [
-                 'region' => $region,
-                 'version' => $version,
+                 'region' => $region[0],
+                 'version' => $version[0],
                  "Effect" => "Allow",
                  'credentials' => [
-                   'key' => $key,
-                   'secret' => $secret
+                   'key' => $key[0],
+                   'secret' => $secret[0]
                   ]
                 ];
 $s3client = new Aws\S3\S3Client($config);
 $file = $s3client->getObject([
-                         'Bucket' => $bucket,
+                         'Bucket' => $bucket[0],
                          'Key' => 'create_txt_record.json'
                        ]);
 $body = $file->get('Body');
