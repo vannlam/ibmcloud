@@ -2,7 +2,6 @@
 <?php
 $output=null;
 $retval=null;
-exec('ls /aws/s3-access', $output, $retval);
-echo "Status code $retval \n";
+exec('cat /aws/s3-access/CE_S3_BUCKET', $output, $retval);
 print_r($output);
 ?>
