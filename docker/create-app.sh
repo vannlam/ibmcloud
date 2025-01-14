@@ -2,7 +2,7 @@
 # ibmcloud target -g france-vla
 # ibmcloud ce project select -n safeitem
 
-ibmcloud ce app create --name si3
+ibmcloud ce app delete --name si3 --force
 ibmcloud ce app create \
   --name si3 \
   --build-source git@github.com:vannlam/ibmcloud.git \

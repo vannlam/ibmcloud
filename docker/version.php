@@ -3,7 +3,7 @@ require '/aws/aws-autoloader.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-$output = shell_exec('cat /aws/s3-access');
+$output = shell_exec('ls -l /aws/s3-access');
 echo "<pre>$output</pre>";
 
 $env = parse_ini_file('/aws/s3-access');
