@@ -5,9 +5,6 @@ RUN \
     apt upgrade -y && \
     apt install -y apache2 sendmail php php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
     apt clean && \
-    echo "Y Y Y" | /usr/sbin/sendmailconfig 
-    /usr/bin/mkdir /etc/mail/auth && \
-    chmod 700 /etc/mail/auth 
     echo "AuthInfo:your.smtp.server \"U:safeitem@lam-s.com\" \"P:fR8@Bj1$BMAhY1F\" \"M:PLAIN\"" > /etc/mail/auth/client-info 
     makemap hash /etc/mail/auth/client-info < /etc/mail/auth/client-info && \
     chmod 600 /etc/mail/auth/client-info && \
@@ -18,6 +15,9 @@ RUN \
     unzip aws.zip -d /aws && \
     sed -i "s:Listen 80$:Listen 8080:" /etc/apache2/ports.conf && \
     sed -i "s/VirtualHost \*:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf && \
+    echo "Y Y Y" | /usr/sbin/sendmailconfig 
+    mkdir /etc/mail/auth
+    chmod 700 /etc/mail/auth 
     chmod +x /var/log/apache2 \
     chmod +r /var/log/apache2/error.log \
     rm -rf /aws.zip /var/lib/apt/lists/\*
