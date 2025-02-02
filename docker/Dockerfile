@@ -5,14 +5,14 @@ RUN \
     apt upgrade -y && \
     apt install -y apache2 sendmail php php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
     apt clean && \
-    echo "Y Y Y" | /usr/sbin/sendmailconfig #&& \
+    echo "Y Y Y" | /usr/sbin/sendmailconfig 
     mkdir /etc/mail/auth && \
-    chmod 700 /etc/mail/auth #&& \
-    echo "AuthInfo:your.smtp.server \"U:safeitem@lam-s.com\" \"P:fR8@Bj1$BMAhY1F\" \"M:PLAIN\"" > /etc/mail/auth/client-info #&& \
+    chmod 700 /etc/mail/auth 
+    echo "AuthInfo:your.smtp.server \"U:safeitem@lam-s.com\" \"P:fR8@Bj1$BMAhY1F\" \"M:PLAIN\"" > /etc/mail/auth/client-info 
     makemap hash /etc/mail/auth/client-info < /etc/mail/auth/client-info && \
     chmod 600 /etc/mail/auth/client-info && \
-    chmod 600 /etc/mail/auth/client-info.db #&& \
-    sed -i "s@MAILER_DEFINITIONS@define(\`SMART_HOST\',\`mail15.lwspanel.com\')dnl\ndefine(\`RELAY_MAILER_ARGS\', \`TCP $h 587\')dnl\ndefine(\`confAUTH_MECHANISMS\', \`EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN\')dnl\nFEATURE(\`authinfo\',\`hash -o /etc/mail/auth/client-info.db\')dnl\nMAILER_DEFINITIONS@" /etc/mail/sendmail.mc #&& \
+    chmod 600 /etc/mail/auth/client-info.db 
+    sed -i "s@MAILER_DEFINITIONS@define(\`SMART_HOST\',\`mail15.lwspanel.com\')dnl\ndefine(\`RELAY_MAILER_ARGS\', \`TCP $h 587\')dnl\ndefine(\`confAUTH_MECHANISMS\', \`EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN\')dnl\nFEATURE(\`authinfo\',\`hash -o /etc/mail/auth/client-info.db\')dnl\nMAILER_DEFINITIONS@" /etc/mail/sendmail.mc 
     wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip && \
     mkdir /aws && \
     unzip aws.zip -d /aws && \
