@@ -5,7 +5,7 @@ RUN \
     apt upgrade -y && \
     apt install -y apache2 sendmail php php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
     apt clean && \
-    echo "AuthInfo:your.smtp.server \"U:safeitem@lam-s.com\" \"P:fR8@Bj1$BMAhY1F\" \"M:PLAIN\"" > /etc/mail/auth/client-info 
+    echo 'AuthInfo:your.smtp.server "U:safeitem@lam-s.com" "P:fR8@Bj1$BMAhY1F" "M:PLAIN"' > /etc/mail/auth/client-info 
     makemap hash /etc/mail/auth/client-info < /etc/mail/auth/client-info && \
     chmod 600 /etc/mail/auth/client-info && \
     chmod 600 /etc/mail/auth/client-info.db 
