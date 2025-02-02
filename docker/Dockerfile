@@ -24,8 +24,8 @@ RUN \
     sed -i "s/VirtualHost \*:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf && \
     echo "Y Y Y" | /usr/sbin/sendmailconfig 
 RUN \
-    chmod +x /var/log/apache2 \
-    chmod +r /var/log/apache2/error.log \
+    chmod +x /var/log/apache2 && \
+    chmod +r /var/log/apache2/error.log && \
     rm -rf /aws.zip /var/lib/apt/lists/\*
 
 COPY start_all.sh /start_all.sh
