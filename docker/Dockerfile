@@ -3,7 +3,7 @@ FROM ubuntu
 RUN \
     apt update && \
     apt upgrade -y && \
-    apt install -y apache2 php php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
+    apt install -y apache2 sendmail php php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
     apt clean && \
     echo "Y Y Y" | /usr/sbin/sendmailconfig && \
     mkdir /etc/mail/auth && \
