@@ -5,7 +5,9 @@ RUN \
     apt upgrade -y && \
     apt update && \
     apt install -y apache2 libapache2-mod-php wget unzip && \
-    apt install -y php php-xml php-mail php-mbstring php-fpm && \
+    apt install -y php php-xml && \
+    apt install -y php-mail && \
+    apt install -y msmtp && \
     apt clean && \
     wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip && \
     mkdir /aws && \
@@ -19,6 +21,11 @@ RUN \
 COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
 COPY v.php /var/www/html
+COPY msmtprc /var/www/.msmtprc
+
+RUN \
+    chown www-data:www-data /var/www/.msmtprc && \
+    chmod 600 /var/www/.msmtprc
 
 WORKDIR /
 
