@@ -3,7 +3,9 @@ FROM ubuntu
 RUN \
     apt update && \
     apt upgrade -y && \
-    apt install -y apache2 php php-xml php-mail php-mbstring php-fpm libapache2-mod-php wget unzip && \
+    apt update && \
+    apt install -y apache2 libapache2-mod-php wget unzip && \
+    apt install -y php php-xml php-mail php-mbstring php-fpm && \
     apt clean && \
     wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip && \
     mkdir /aws && \
