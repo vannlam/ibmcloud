@@ -1,33 +1,30 @@
 FROM ubuntu
 
-RUN \
-    apt update && \
-    apt upgrade -y && \
-    apt update && \
-    apt install -y apache2 && \
-    apt install -y libapache2-mod-php && \
-    apt install -y php php-xml && \
-    apt install -y php-mail && \
-    echo no | apt install -y msmtp && \
-    apt install -y wget unzip && \
-    apt clean && \
-    wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip && \
-    mkdir /aws && \
-    unzip aws.zip -d /aws && \
-    sed -i "s:Listen 80$:Listen 8080:" /etc/apache2/ports.conf && \
-    sed -i "s/VirtualHost \*:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf && \
-    chmod +x /var/log/apache2 && \
-    chmod +r /var/log/apache2/error.log && \
-    rm -rf /aws.zip /var/lib/apt/lists/\*
+RUN apt update
+RUN apt upgrade -y
+RUN apt install -y apache2
+RUN apt install -y libapache2-mod-php
+RUN apt install -y php php-xml
+RUN apt install -y php-mail
+RUN echo no | apt install -y msmtp
+RUN apt install -y wget unzip
+RUN apt clean
+RUN wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip
+RUN mkdir /aws
+RUN unzip aws.zip -d /aws
+RUN sed -i "s:Listen 80$:Listen 8080:" /etc/apache2/ports.conf
+RUN sed -i "s/VirtualHost \*:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf
+RUN chmod +x /var/log/apache2
+RUN chmod +r /var/log/apache2/error.log
+RUN rm -rf /aws.zip /var/lib/apt/lists/\*
 
 COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
 COPY v.php /var/www/html
-COPY msmtprc /var/www/.msmtprc
+COPY msmtprc /var/www/msmtprc
 
-RUN \
-    chown www-data:www-data /var/www/.msmtprc && \
-    chmod 600 /var/www/.msmtprc
+RUN chown www-data:www-data /var/www/msmtprc
+RUN chmod 600 /var/www/msmtprc
 
 WORKDIR /
 
