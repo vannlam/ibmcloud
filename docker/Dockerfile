@@ -4,10 +4,13 @@ RUN \
     apt update && \
     apt upgrade -y && \
     apt update && \
-    apt install -y apache2 libapache2-mod-php wget unzip && \
+    apt install -y apache2 && \
+    apt install -y libapache2-mod-php && \
+    apt install -y wget && \
+    apt install -y unzip && \
     apt install -y php php-xml && \
     apt install -y php-mail && \
-    apt install -y msmtp && \
+    echo no | apt install -y msmtp && \
     apt clean && \
     wget https://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip && \
     mkdir /aws && \
