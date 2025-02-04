@@ -21,10 +21,10 @@ RUN rm -rf /aws.zip /var/lib/apt/lists/\*
 COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
 COPY v.php /var/www/html
-COPY msmtprc /var/www/msmtprc
+COPY msmtprc /var/www/.msmtprc
 
-RUN chown www-data:www-data /var/www/msmtprc
-RUN chmod 600 /var/www/msmtprc
+RUN chown www-data:www-data /var/www/.msmtprc
+RUN chmod 600 /var/www/.msmtprc
 
 WORKDIR /
 
