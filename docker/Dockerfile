@@ -4,7 +4,7 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install -y apache2
 RUN apt install -y libapache2-mod-php
-RUN apt install -y php php-xml
+RUN apt install -y php php-xml php-mbstring
 RUN apt install -y php-mail
 RUN echo no | apt install -y msmtp
 RUN apt install -y wget unzip
@@ -14,6 +14,7 @@ RUN mkdir /aws
 RUN unzip aws.zip -d /aws
 RUN sed -i "s:Listen 80$:Listen 8080:" /etc/apache2/ports.conf
 RUN sed -i "s/VirtualHost \*:80/VirtualHost *:8080/" /etc/apache2/sites-enabled/000-default.conf
+RUN sed -i 's@.*sendmail_path.*@sendmail_path = "/usr/bin/msmtp -t"@' /etc/php/8.3/apache2/php.ini
 RUN chmod +x /var/log/apache2
 RUN chmod +r /var/log/apache2/error.log
 RUN rm -rf /aws.zip /var/lib/apt/lists/\*

@@ -1,18 +1,13 @@
 {
    "user":[
 	{
-	    "id": "vann",
-	    "pwd": "vann",
+	    "id": "wan",
+	    "email": "vann@lam-s.com",
 	    "search": "ibm_all"
 	},
 	{
-	    "id": "debug",
-	    "pwd": "debug",
-	    "search": "*"
-	},
-	{
-	    "id": "celia",
-	    "pwd": "celia",
+	    "id": "clya",
+	    "email": "celia@lam-s.com",
 	    "search": "*"
 	}
    ]
