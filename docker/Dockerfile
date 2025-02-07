@@ -27,6 +27,7 @@ COPY safeitem.php /var/www/html
 COPY safeitem40.php /var/www/html
 COPY msmtprc /var/www/.msmtprc
 COPY safeitem40/ /var/www/html/safeitem40/
+COPY dojo-release-1.8.3/ /var/www/html/dojo-release-1.8.3/
 
 RUN chown www-data:www-data /var/www/.msmtprc
 RUN chmod 600 /var/www/.msmtprc
