@@ -18,14 +18,11 @@ if ($passcode == $pass_gen)
 {
 	$_SESSION['items']=f_get_items();
 	$_SESSION['logged_in']=true;
-	setcookie('ck_login',$form['login'],time() + 365*24*3600,'/');
 	$_SESSION['message']="";
 	header('Location: ../view/v_item.php');
 }
 else 
 {
-	$error['login'] = "Wrong passcode";
-	$_SESSION['errorconnect']=$error;
 	$_SESSION['message']="Authentication failed";
 	sleep(5);
 	header('Location: ../view/v_connect.php');

@@ -16,7 +16,6 @@ session_start();
 				<legend>Enter your passcode : </legend>
 				<label for="passcode"> <span class="requis"><?php echo $_SESSION['session_match']." - "  ?></span></label>
 				<input type="text" name="passcode" id="passcode" size="6" autofocus />
-				<span class="error"><?php echo $error['login'] ?></span>
 				<br />
 				<button data-dojo-type="dijit/form/Button" type="submit">Submit</button>
 			</fieldset>
