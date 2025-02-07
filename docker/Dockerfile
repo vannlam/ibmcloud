@@ -23,7 +23,7 @@ COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
 COPY v.php /var/www/html
 COPY msmtprc /var/www/.msmtprc
-COPY safeitem40 /var/www/html
+COPY safeitem40/ /var/www/html/
 
 RUN chown www-data:www-data /var/www/.msmtprc
 RUN chmod 600 /var/www/.msmtprc
