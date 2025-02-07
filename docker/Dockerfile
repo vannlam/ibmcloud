@@ -18,12 +18,15 @@ RUN sed -i 's@.*sendmail_path.*@sendmail_path = "/usr/bin/msmtp -t"@' /etc/php/8
 RUN chmod +x /var/log/apache2
 RUN chmod +r /var/log/apache2/error.log
 RUN rm -rf /aws.zip /var/lib/apt/lists/\*
+RUN mkdir /var/www/html/safeitem40
 
 COPY start_all.sh /start_all.sh
 COPY version.php /var/www/html
 COPY v.php /var/www/html
+COPY safeitem.php /var/www/html
+COPY safeitem40.php /var/www/html
 COPY msmtprc /var/www/.msmtprc
-COPY safeitem40/ /var/www/html/
+COPY safeitem40/ /var/www/html/safeitem40/
 
 RUN chown www-data:www-data /var/www/.msmtprc
 RUN chmod 600 /var/www/.msmtprc
