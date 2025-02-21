@@ -50,7 +50,7 @@ if ($compulsary) {
 		$item['item_secret']=$form['itempassphrase'];
 		$item['item_misc']=$form['itemmisc'];
 		$message="New item created for key : '".$item['item_key']."'";
-		f_insert_item($item['login_id'], $item['item_key'], $item['item_identity'], $item['item_secret'], $item['item_misc']);
+		f_insert_item($item['item_key'], $item['item_identity'], $item['item_secret'], $item['item_misc']);
 	} else {
 		$error['itemkey'] = "This key already exists";
 	}

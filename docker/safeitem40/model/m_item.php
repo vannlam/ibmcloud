@@ -16,26 +16,18 @@ function f_get_items()
 		$s3client = new Aws\S3\S3Client($config);
 		$items=null;
 		if ($s3client!=null) {
-			$prefix='_'.$_SESSION['login_id'].'_';
-			$itemids = $s3client->listObjectsV2([
-					 'Bucket' => $_SESSION['bucket'],
-					 'Prefix' => $prefix
-				       ]);
-			foreach ($itemids['Contents'] as $itemid) {
-				$s3item = $s3client->getObject([
-						 'Bucket' => $_SESSION['bucket'],
-						 'Key' => $itemid['Key']
-					       ]);
-				$json_item=(string)$s3item['Body'];
-				$arr_item = json_decode($json_item);
-				echo " Key : ", $arr_item->item_key;
-				$item=null; 
-				$item['item_id']=$itemid['Key'];
-				$item['item_key']=$arr_item->item_key;
-				$item['item_identity']=$arr_item->item_identity;
-				$item['item_secret']=$arr_item->item_secret;
-				$item['item_misc']=$arr_item->item_misc;
-				$items[]=$item;
+			$s3item = $s3client->getObject([
+				 'Bucket' => $_SESSION['bucket'],
+				 'Key' => $_SESSION['login_id']."_item.json"
+			]);
+			$json_item=(string)$s3item['Body'];
+			$arr_item = json_decode($json_item, true);
+			foreach ($arr_item as $id=>$item) {
+				$itm=null;
+				foreach ($item as $field=>$value) {
+					$itm[$field]=$value;
+				}
+				$items[]=$itm;
 			}
 		}
 	} catch (Exception $e) {
@@ -44,7 +36,7 @@ function f_get_items()
 
     return $items;
 }
-function f_insert_item($loginid, $key, $identity, $secret, $misc)
+function f_insert_item($key, $identity, $secret, $misc)
 {
 	$config = [
 		'region' => $_SESSION['region'],
@@ -59,15 +51,19 @@ function f_insert_item($loginid, $key, $identity, $secret, $misc)
         try {
                 $s3client = new Aws\S3\S3Client($config);
                 if ($s3client!=null) {
-                        $prefix='_'.$loginid.'_'.$key.'.json';
-			$body_json=json_encode(array('item_key' => $key,
-					    'item_identity' => $identity,
-					    'item_secret' => $secret,
-					    'item_misc' => $misc));
+			$item=null;
+			$item['item_key']=$key;
+			$item['item_identity']=$identity;
+			$item['item_secret']=$secret;
+			$item['item_misc']=$misc;
+			$items=$_SESSION['items'];
+			$items[]=$item;
+			$json_items=json_encode($items, 0, 2);
+
 			$result	= $s3client->putObject([
                                          'Bucket' => $_SESSION['bucket'],
-					 'Key' => $prefix,
-					 'Body' => $body_json
+					 'Key' => $_SESSION['login_id']."_item.json",
+					 'Body' => $json_items
                                        ]);
 		}
         } catch (Exception $e) {
@@ -87,13 +83,22 @@ function f_delete_item()
 		]
         ];
 
+	$items=$_SESSION['items'];
+	for ($i=0; $i<count($items); $i++) {
+		if ($items[$i]['item_key'] == $_SESSION['formitem']['itemkey']) {
+			unset($items[$i]);
+		}
+	}
+
+	$json_items=json_encode($items, 0, 2);
+
         try {
                 $s3client = new Aws\S3\S3Client($config);
                 if ($s3client!=null) {
-                        $s3itemid=$_SESSION['formitem']['itemid'];
-			$result = $s3client->deleteObject([
+			$result = $s3client->putObject([
                                          'Bucket' => $_SESSION['bucket'],
-					 'Key' => $s3itemid
+					 'Key' => $_SESSION['login_id'].'_item.json',
+					 'Body' => $json_items
                                        ]);
 		}
         } catch (Exception $e) {
@@ -111,19 +116,26 @@ function f_update_item($key, $identity, $secret, $misc)
 			'secret' => $_SESSION['secret']
 		]
         ];
+	$items=$_SESSION['items'];
+	foreach ($items as $k => $item) {
+
+		if ($item['item_key']==$key) {
+			$item['item_identity']=$identity;
+			$item['item_secret']=$secret;
+			$item['item_misc']=$misc;
+			$items[$k]=$item;
+			break;
+		}
+	}
 
         try {
                 $s3client = new Aws\S3\S3Client($config);
                 if ($s3client!=null) {
-			$body_json=json_encode(array('item_key' => $key,
-					    'item_identity' => $identity,
-					    'item_secret' => $secret,
-					    'item_misc' => $misc));
-                        $s3itemid=$_SESSION['formitem']['itemid'];
+			$json_items=json_encode($items, 0, 2);
 			$result	= $s3client->putObject([
                                          'Bucket' => $_SESSION['bucket'],
-					 'Key' => $s3itemid,
-					 'Body' => $body_json
+					 'Key' => $_SESSION['login_id'].'_item.json',
+					 'Body' => $json_items
                                        ]);
 		}
         } catch (Exception $e) {

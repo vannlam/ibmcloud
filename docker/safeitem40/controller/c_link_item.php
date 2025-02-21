@@ -13,7 +13,6 @@ foreach ($items as $key => $itm) {
 
 $form=$_SESSION['formitem'];
 $form['itemkey']=$itemkey;
-$form['itemid']=$item['item_id'];
 $form['itemidentity']=$item['item_identity'];
 $form['itempassphrase']=$item['item_secret'];
 $form['itemclearpassphrase']=$item['item_secret'];

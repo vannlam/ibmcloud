@@ -10,4 +10,5 @@ f_reset_item_form_messages ();
 $message="Item deleted";
 $_SESSION['message']=$message;
 $_SESSION['items']=$items;
+unset($_SESSION['formitem']);
 header('Location: ../view/v_item.php');

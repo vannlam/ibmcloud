@@ -20,28 +20,25 @@ if (isset($_SESSION['message'])) {
 	$message = "";
 }
 
-// init cred
-//if (!isset($_SESSION['region'])) {
-	$region=null;
-	$version=null;
-	$key=null;
-	$secret=null;
-	$bucket=null;
-	$retval=null;
-	exec('cat /aws/s3-access/CE_S3_REGION', $region, $retval);
-	exec('cat /aws/s3-access/CE_S3_VERSION', $version, $retval);
-	exec('cat /aws/s3-access/CE_S3_KEY', $key, $retval);
-	exec('cat /aws/s3-access/CE_S3_SECRET', $secret, $retval);
-	exec('cat /aws/s3-access/CE_S3_BUCKET', $bucket, $retval);
+$region=null;
+$version=null;
+$key=null;
+$secret=null;
+$bucket=null;
+$retval=null;
+exec('cat /aws/s3-access/CE_S3_REGION', $region, $retval);
+exec('cat /aws/s3-access/CE_S3_VERSION', $version, $retval);
+exec('cat /aws/s3-access/CE_S3_KEY', $key, $retval);
+exec('cat /aws/s3-access/CE_S3_SECRET', $secret, $retval);
+exec('cat /aws/s3-access/CE_S3_BUCKET', $bucket, $retval);
 
-	$_SESSION['region']=$region[0];
-	$_SESSION['version']=$version[0];
-	$_SESSION['key']=$key[0];
-	$_SESSION['secret']=$secret[0];
-	$_SESSION['bucket']=$bucket[0];
+$_SESSION['region']=$region[0];
+$_SESSION['version']=$version[0];
+$_SESSION['key']=$key[0];
+$_SESSION['secret']=$secret[0];
+$_SESSION['bucket']=$bucket[0];
 
-	f_connect();
-//}
+f_connect();
 
 ?>
 <!DOCTYPE html>
@@ -58,13 +55,13 @@ if (isset($_SESSION['message'])) {
 			<fieldset>
 				<legend>Choose login :</legend>
 				<label for="login">Login <span class="requis">*</span></label>
-				<select name="login" id="login" autofocus="autofocus">
+				<select name="login" id="login" selected = "<?php echo $form['login'] ?>" autofocus="autofocus">
 				<?php
                   		$arr_login=$_SESSION['logins'];
 				foreach ($arr_login->user as $user)
 				{
 				?>
-				<option value="<?php echo $user->id ?>"><?php echo $user->id ?></option>
+				<option <?php if ($form['login'] == $user->id) { echo "selected"; } ?> value="<?php echo $user->id ?>"><?php echo $user->id ?></option>
 				<?php
 				}
   				?>
@@ -72,6 +69,7 @@ if (isset($_SESSION['message'])) {
 				<span class="error"><?php echo $error['login'] ?></span>
 				<br />
 				<button data-dojo-type="dijit/form/Button" type="submit">Submit</button>
+				<span class="success"><?php echo $message ?></span>
 			</fieldset>
 		</form>
 		<script>

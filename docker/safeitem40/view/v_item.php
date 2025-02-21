@@ -10,7 +10,6 @@ if (isset($_SESSION['formitem'])){
 	$form = $_SESSION['formitem'];
 } else {
 	$form['searchpattern']=$_SESSION['searchpattern'];
-	$form['itemid']=-1;
 	$form['itemkey']="";
 	$form['itemidentity']="";
 	$form['itempassphrase']="";
@@ -30,8 +29,7 @@ if (isset($_SESSION['message'])){
 } else {
 	$message = "";
 }
-
-if ($form['itemid']==-1) {
+if ($form['itemkey']=="") {
 	$currentitem=false;
 } else {
 	$currentitem=true;
@@ -56,6 +54,7 @@ if ($form['itemid']==-1) {
 					<button data-dojo-type="dijit/form/Button" type="button" name="new" onclick="window.location='v_clean_message.php?next=v_create_new_item.php'" >New</button>
 					<button data-dojo-type="dijit/form/Button" type="button" name="delete" <?php echo (!$currentitem) ? 'disabled="disabled"' : '' ?> onclick="decision('Are you sure you want to Delete this item ?','v_clean_message.php?next=../controller/c_delete_item.php') ">Delete</button>
 					<button data-dojo-type="dijit/form/Button" type="button" name="update" <?php echo (!$currentitem) ? 'disabled="disabled"' : '' ?> onclick="decision_upd('Are you sure you want to Update this item ?','../controller/c_update_item.php') " >Update</button>
+					<button data-dojo-type="dijit/form/Button" type="button" name="copy" <?php echo (!$currentitem) ? 'disabled="disabled"' : '' ?> onclick="copytoclipboard()">Copy Password</button>
 					<div class="droite" >
 						<button data-dojo-type="dijit/form/Button" type="button" name="exit" onclick="decision('Are you sure you want to exit ?','/safeitem40.php') " />Exit</button>
 					</div>
@@ -72,7 +71,6 @@ if ($form['itemid']==-1) {
 			</fieldset>
 			<fieldset>
 				<legend>Item </legend>
-				<input type="hidden" name="itemid" id="itemid"  value="<?php echo $form['itemid'] ?>"/>
 				<label for="itemkey">Key </label>
 				<input type="text" name="itemkey" id="itemkey" size="30" disabled="disabled" value="<?php echo htmlspecialchars($form['itemkey'], ENT_QUOTES, 'UTF-8') ?>"/>
 				<span class="error"><?php echo $error['itemkey'] ?></span>
@@ -116,7 +114,7 @@ if ($form['itemid']==-1) {
 				if ($form['searchpattern'] == "***debug*!*") {
 					$msgerror="";
 					exec('tail -100 /var/log/apache2/error.log', $msgerror, $retval);
-					print_r($msgerror);
+					var_dump($msgerror);
 					die ("");
 				}
 

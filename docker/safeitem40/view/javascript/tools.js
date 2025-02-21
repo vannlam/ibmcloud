@@ -64,23 +64,36 @@ function post_to_url(path, params) {
 
 function decision_upd(message, url){
 	if (confirm(message)) {
-		var itemid = document.searchform.itemid.value;
 		var itemkey = document.searchform.itemkey.value;
 		var itemidentity = document.searchform.itemidentity.value;
 		var itemsecret = document.searchform.itemclearpassphrase.value; 
 		var itemmisc = document.searchform.itemmisc.value; 
-		post_to_url(url, {itemid: itemid, itemkey: itemkey, itemidentity: itemidentity, itemsecret: itemsecret, itemmisc: itemmisc});
+		post_to_url(url, {itemkey: itemkey, itemidentity: itemidentity, itemsecret: itemsecret, itemmisc: itemmisc});
 	}
 }
 
 function keep_data(url){
-	var itemid = document.searchform.itemid.value;
 	var itemkey = document.searchform.itemkey.value;
 	var itemidentity = document.searchform.itemidentity.value;
 	var itemsecret = document.searchform.itemclearpassphrase.value; 
 	var itemmisc = document.searchform.itemmisc.value; 
-	post_to_url(url, {itemid: itemid, itemkey: itemkey, itemidentity: itemidentity, itemsecret: itemsecret, itemmisc: itemmisc});
+	post_to_url(url, {itemkey: itemkey, itemidentity: itemidentity, itemsecret: itemsecret, itemmisc: itemmisc});
 }
+
+function copytoclipboard() {
+  // Get the text field
+  var copyText = document.getElementById("itemclearpassphrase");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 40); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  //alert("Copied the text: " + copyText.value);
+} 
 
 function link_item(itemkey){
 	post_to_url('../controller/c_link_item.php', {itemkey: itemkey});
