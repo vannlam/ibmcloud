@@ -1,6 +1,6 @@
-# ibmcloud target -r eu-es
-# ibmcloud target -g france-vla
-# ibmcloud ce project select -n safeitem
+ibmcloud target -r eu-es
+ibmcloud target -g france-vla
+ibmcloud ce project select -n safeitem
 
 ibmcloud ce app delete --name si3 --force
 sleep 5
