@@ -19,7 +19,6 @@ f_reset_item_form_messages ();
 $form=$_SESSION['formitem'];
 $form['searchpattern']=$searchpattern;
 if ($item != null) {
-	$form['itemid']=$item['item_id'];
 	$form['itemkey']=$item['item_key'];
 	$form['itemidentity']=$item['item_identity'];
 	$form['itempassphrase']=$item['item_secret'];

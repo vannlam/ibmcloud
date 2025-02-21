@@ -66,6 +66,19 @@ f_connect();
 				}
   				?>
 				</select>
+				<legend>Choose email target for passcode :</legend>
+				<label for="emailtarget">Email to <span class="requis">*</span></label>
+				<select name="emailtarget" id="emailtarget" selected = "<?php echo $form['login'] ?>" autofocus="autofocus">
+				<?php
+                  		$arr_login=$_SESSION['logins'];
+				foreach ($arr_login->user as $user)
+				{
+				?>
+				<option <?php if ($form['login'] == $user->id) { echo "selected"; } ?> value="<?php echo $user->id ?>"><?php echo $user->id ?></option>
+				<?php
+				}
+  				?>
+				</select>
 				<span class="error"><?php echo $error['login'] ?></span>
 				<br />
 				<button data-dojo-type="dijit/form/Button" type="submit">Submit</button>

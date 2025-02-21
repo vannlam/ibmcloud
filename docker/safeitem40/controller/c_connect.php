@@ -7,6 +7,7 @@ include('../model/m_db.php');
 include('../model/m_item.php');
 
 $form['login']=$_POST["login"];
+$form['emailtarget']=$_POST["emailtarget"];
 
 $arr_login=$_SESSION['logins'];
 foreach ($arr_login->user as $user)
@@ -14,6 +15,12 @@ foreach ($arr_login->user as $user)
 	if (($form['login']==$user->id)) {
 		$_SESSION['login_id']=$form['login'];
 		$_SESSION['searchpattern']=$user->search;
+		break;
+	}
+}
+foreach ($arr_login->user as $user)
+{
+	if (($form['emailtarget']==$user->id)) {
 		$_SESSION['login_email']=$user->email;
 		break;
 	}

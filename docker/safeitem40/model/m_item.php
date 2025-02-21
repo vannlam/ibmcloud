@@ -26,9 +26,13 @@ function f_get_items()
 				$itm=null;
 				foreach ($item as $field=>$value) {
 					$itm[$field]=$value;
+					if ($field == "item_key") {
+						$k=$value;
+					}
 				}
-				$items[]=$itm;
+				$items[$k]=$itm;
 			}
+			ksort($items, 4);
 		}
 	} catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -57,7 +61,8 @@ function f_insert_item($key, $identity, $secret, $misc)
 			$item['item_secret']=$secret;
 			$item['item_misc']=$misc;
 			$items=$_SESSION['items'];
-			$items[]=$item;
+			$items[$key]=$item;
+			ksort($items, 4);
 			$json_items=json_encode($items, 0, 2);
 
 			$result	= $s3client->putObject([
@@ -69,8 +74,8 @@ function f_insert_item($key, $identity, $secret, $misc)
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-
 }
+
 function f_delete_item()
 {
 	$config = [
@@ -84,9 +89,9 @@ function f_delete_item()
         ];
 
 	$items=$_SESSION['items'];
-	for ($i=0; $i<count($items); $i++) {
-		if ($items[$i]['item_key'] == $_SESSION['formitem']['itemkey']) {
-			unset($items[$i]);
+	foreach ($items as $k => $item) {
+		if ($k == $_SESSION['formitem']['itemkey']) {
+			unset($items[$k]);
 		}
 	}
 
