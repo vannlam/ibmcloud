@@ -1,0 +1,2 @@
+use alias icc to connect to itz env
+and then use 1.push.sh and 2.create-app.sh
