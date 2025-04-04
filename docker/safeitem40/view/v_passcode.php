@@ -18,6 +18,7 @@ session_start();
 				<input type="text" name="passcode" id="passcode" size="12" autofocus />
 				<br />
 				<button data-dojo-type="dijit/form/Button" type="submit">Submit</button>
+				<button data-dojo-type="dijit/form/Button" type="button" name="login" onclick="window.location='v_clean_message.php?next=v_connect.php'" >Retry</button>
 			</fieldset>
 		</form>
 		<script>

@@ -94,7 +94,7 @@ if ($form['itemkey']=="") {
 				<input type="text" name="pwd" id="pwd" size="30" readonly="readonly" />
 				<?php include("v_generatepwd.html"); ?>
 				<br />
-				<span class="success"><?php echo $message ?></span>
+				<span class="success" ><?php echo $message ?></span>
 				<br />
 			</fieldset>
 			<fieldset>
