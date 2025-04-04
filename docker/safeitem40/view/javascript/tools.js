@@ -90,7 +90,7 @@ function copytoclipboard() {
 
    // Copy the text inside the text field
   navigator.clipboard.writeText(copyText.value);
-  post_to_url('../controller/c_copytoclipboard.php', {});
+  window.location="../controller/c_copytoclipboard.php"
 
 } 
 
