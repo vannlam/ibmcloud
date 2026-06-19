@@ -12,7 +12,7 @@ ibmcloud ce app create \
   --build-dockerfile Dockerfile \
   --build-commit master \
   --build-context-dir docker \
-  --build-size medium \
+  --build-size small \
   --image docker.io/vannlam3/wan:latest \
   --registry-secret vannlam3 \
   --mount-secret /aws/s3-access=s3-access
